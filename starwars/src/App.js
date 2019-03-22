@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CharacterList from './components/CharacterList';
+import PreviousButton from './components/PreviousButton';
+import NextButton from './components/NextButton';
 import './App.css';
 
 class App extends Component {
@@ -33,11 +35,29 @@ class App extends Component {
       });
   };
 
+
+  Next = () => {
+    if (this.state.data.next !== null) {
+      return this.getCharacters(this.state.data.next)
+    }
+  }
+
+  Previous = () => {
+    if (this.state.data.previous !== null) {
+      return this.getCharacters(this.state.data.previous)
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
         <CharacterList characters={this.state.starwarsChars}/>
+
+        <div className="nav-buttons">
+          <PreviousButton onClick={this.Previous} />
+          <NextButton onClick={this.Next} />
+        </div>
       </div>
     );
   }
